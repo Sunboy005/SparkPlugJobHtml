@@ -17,6 +17,7 @@
           script-src 'self' 'unsafe-inline';
           connect-src 'self' https://localhost:44321
           ">
+    
 
     <title>Spark Plug - Customer Form</title>
 
@@ -110,13 +111,14 @@
 
             }
 
-
             if (message == "") { //start processing form when there are no errors
 
                 var formdata = new FormData(mySparkPlugFeedback); // get data from the form
-
-                var endpoint = 'https://localhost:44321/api/CustomerForm/send-message/israelandco'; //change this to a valid endpoint;
-
+                //Additional code to specify the company
+                var companyName="xyz NigeRia LimiTed";
+                var companyToSend=companyName.replace(/\s+/g,'_').toLowerCase();
+                var endpoint = `https://localhost:44321/customerform/send-message/${companyToSend}`; ;
+                //Additional code Ends
                 fetch(endpoint, {
                     method: 'post',
                     body: formdata,
